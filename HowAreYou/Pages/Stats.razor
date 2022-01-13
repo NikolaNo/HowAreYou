@@ -1,0 +1,328 @@
+﻿@page "/stats"
+
+@inject HowAreYou.Controllers.SentimentController sentiment
+@inject ApplicationDbContext db
+@inject NavigationManager Navigation
+
+<PageTitle>Index</PageTitle>
+
+<center><h1>Choose a date range</h1>
+
+		<p>
+			Select Entries From: <input type="date" @bind="dateselectedfrom" /> To: <input type="date" @bind="dateselectedto" />
+			<button class="btn btn-primary" @onclick="SelectEntries">Select</button>
+		</p>
+
+		<hr />
+		@if (@avgSentiment != "")
+				{
+  <strong><p>Sentiment average for selected period = @avgSentiment %</p></strong>
+		}
+		<table class="table table-striped">
+			<thead>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+			</thead>
+			<tbody>
+				@foreach (var item in getSentimentForDate)
+				{
+	<tr>
+
+	 <td style = "width:60%;">
+						@item.Sentiment
+	 </td>
+	 <td>
+						@item.SentimentScore %
+	 </td>
+	 	 <td>
+						@item.UserID
+	 </td>
+	</tr>
+				}
+			</tbody>
+		</table>
+		</center>
+
+@code {
+	[Parameter]
+	public float happiness { get; set; } = 50; // 0=worst, 100=best
+
+	public string display = "";
+
+	public string example = "none";
+	//string avatar = "person";
+	//string avatarcolor = "grey";
+	//string userName = "";
+
+	string userid = "iCareAlot";
+	string targetText;
+	DateTime date = DateTime.Now;
+	static string shortdate = DateTime.Now.ToShortDateString();
+
+	string res = "";
+	string res2 = "";
+	string res3 = "";
+	public string resdog;
+	public string rescat;
+	public string inspirationalquote;
+	public string inspirationalauthor;
+
+	List<SentimentAI> displaySentiment = new List<SentimentAI>();
+
+	List<SentimentAI> getSentimentForDate = new List<SentimentAI>();
+	DateTime dateselectedfrom = DateTime.Parse(shortdate);
+	DateTime dateselectedto = DateTime.Now;
+
+	public string avgSentiment = "";
+
+	public string Value { get; set; } = "50";
+
+	public void addvalue()
+	{
+		if (happiness < 100) { happiness = happiness + 5; }
+
+		Value = (happiness).ToString();
+	}
+	public void minusvalue()
+	{
+		if (happiness > 0) { happiness = happiness - 5; }
+		Value = (happiness).ToString();
+	}
+
+	public void examples()
+	{
+		if (example == "none")
+		{
+			example = "";
+		}
+		else
+		{
+			example = "none";
+		}
+	}
+	public class RootIspiration
+	{
+		public string text { get; set; }
+		public string author { get; set; }
+	}
+
+	public class Flags
+	{
+		public bool nsfw { get; set; }
+		public bool religious { get; set; }
+		public bool political { get; set; }
+		public bool racist { get; set; }
+		public bool sexist { get; set; }
+	}
+	public class Root
+	{
+		public string category { get; set; }
+		public string type { get; set; }
+		public string setup { get; set; }
+		public string delivery { get; set; }
+		public Flags flags { get; set; }
+		public int id { get; set; }
+		public bool error { get; set; }
+	}
+	public class RootDog
+	{
+		public string message { get; set; }
+		//public int length { get; set; }
+	}
+	public class RootCat
+	{
+		public string fact { get; set; }
+		public int length { get; set; }
+	}
+
+
+	protected override async Task OnInitializedAsync()
+	{		
+
+	}
+
+	private async Task UpdateScoreAsync(ChangeEventArgs e)
+	{
+		targetText = (string)e.Value;
+
+		// Make a real call to Sentiment service
+		happiness = await PredictSentimentAsync(targetText);
+		Value = Convert.ToString(happiness).Replace(",", ".");
+	}
+
+	private async Task<float> PredictSentimentAsync(string targetText)
+	{
+
+		var res = sentiment.PredictSentiment(targetText);
+		string percent = res.Value.ToString();
+
+		float percentages = float.Parse(percent);
+
+		return percentages;
+	}
+
+	public async void AddNewEntry()
+	{
+		int count = db.SentimentAIs.Where(x => x.Date > DateTime.Now.AddDays(-2)).Count();
+		displaySentiment.Clear();
+		if(targetText != null && count < 1000){
+			if (happiness > 100) happiness = 100; 
+			if (happiness < 0) happiness = 0;
+			if (userid.Length > 20) userid = "iDontCareAlot";
+			if (targetText.Length > 500) targetText = "iWroteToMuchText";
+			SentimentAI item = new SentimentAI
+		{
+			Id = Guid.NewGuid(),
+			UserID = userid,
+			Sentiment = targetText,
+			SentimentScore = happiness,
+			Date = date
+
+		};
+			displaySentiment.Add(item);
+			db.SentimentAIs.Add(item);
+			res = "Thinking...";
+			if (happiness > 40 && happiness < 70)
+			{
+				res3 = "Insert bad joke response...";
+
+				await PrintWebApiResponse();
+			}
+			else if (happiness <= 40 && happiness > 10)
+			{
+				res3 = "Insert random good dog response...";
+				await PrintWebApiResponseDog();
+			}
+			else if (happiness < 10)
+			{
+				res3 = "Insert random best dog response...";
+				await PrintWebApiResponseDog();
+			}
+			else if (happiness >= 70 && happiness <= 90)
+			{
+				res3 = "Insert random cat fact response...";
+				await PrintWebApiResponseCat();
+			}
+			else if (happiness > 90)
+			{
+				res3 = "Insert random inspirational quote response...";
+				await PrintWebApiResponseInspirational();
+			}
+
+			db.SaveChanges();
+			targetText = "";
+			display = "none";
+			StateHasChanged();
+		}
+	}
+	//public async void AddNewTestEntry()
+	//{
+	//	//displaySentiment.Clear();
+	
+	//	SentimentAI item = new SentimentAI
+	//	{
+
+	//		Sentiment = targetText,
+	//		SentimentScore = happiness,
+	//		Date = date
+
+	//	};
+	//	displaySentiment.Add(item);
+	//	res3 = "Insert bad joke response...";
+	//	res = "Thinking...";
+	//	await PrintWebApiResponse();
+	//	StateHasChanged();
+	//}
+
+	public async Task PrintWebApiResponse()
+	{
+		HttpClient Http = new HttpClient();
+		var response = await Http.GetStringAsync("https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=twopart");
+
+		Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(response);
+
+		resdog = "";
+		rescat = "";
+		inspirationalquote = "";
+		res = myDeserializedClass.setup;
+		res2 = myDeserializedClass.delivery;
+
+	}
+	public async Task PrintWebApiResponseDog()
+	{
+		HttpClient Http = new HttpClient();
+		var response = await Http.GetStringAsync("https://dog.ceo/api/breeds/image/random");
+		RootDog myDeserializedClass = JsonConvert.DeserializeObject<RootDog>(response);
+
+		res = "";
+		res2 = "";
+		rescat = "";
+		inspirationalquote = "";
+		resdog = myDeserializedClass.message;
+	}
+	public async Task PrintWebApiResponseCatpicture()
+	{
+		HttpClient Http = new HttpClient();
+		var response = await Http.GetStringAsync("https://cataas.com/cat");
+		RootDog myDeserializedClass = JsonConvert.DeserializeObject<RootDog>(response);
+
+		res = "";
+		res2 = "";
+		resdog = "";
+		inspirationalquote = "";
+		resdog = myDeserializedClass.message;
+	}
+	public async Task PrintWebApiResponseCat()
+	{
+		HttpClient Http = new HttpClient();
+		var response = await Http.GetStringAsync("https://catfact.ninja/fact?max_length=240");
+		RootCat myDeserializedClass = JsonConvert.DeserializeObject<RootCat>(response);
+
+		res = "";
+		res2 = "";
+		resdog = "";
+		inspirationalquote = "";
+		rescat = myDeserializedClass.fact;
+
+	}
+
+	public async Task PrintWebApiResponseInspirational()
+	{
+		HttpClient Http = new HttpClient();
+		var response = await Http.GetStringAsync("https://type.fit/api/quotes");
+		var myDeserializedClass = JsonConvert.DeserializeObject<List<RootIspiration>>(response);
+
+		Random r = new Random();
+		var rInt = r.Next(1, myDeserializedClass.Count());
+		var takefirst = myDeserializedClass.Take(rInt).Last();
+
+		res = "";
+		res2 = "";
+		resdog = "";
+		rescat = "";
+		inspirationalquote = takefirst.text.ToString();
+		//inspirationalauthor = takefirst.author.ToString();
+
+	}
+
+	public void SelectEntries()
+	{
+
+		getSentimentForDate = db.SentimentAIs.Where(x => x.UserID == userid)
+			.Where(x => x.Date >= dateselectedfrom && x.Date <= dateselectedto)
+			.OrderBy(x => x.Date)
+			.Take(100)
+			.ToList();
+
+		var sum = getSentimentForDate.Where(x => x.SentimentScore > 0).Select(x => x.SentimentScore).Sum();
+		var count = getSentimentForDate.Where(x => x.SentimentScore > 0).Select(x => x.SentimentScore).Count();
+		avgSentiment = Convert.ToString(sum / count);
+
+		StateHasChanged();
+
+	}
+}
+
+
+@*<SurveyPrompt Title="How is Blazor working for you?" />*@

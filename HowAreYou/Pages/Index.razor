@@ -11,7 +11,8 @@
 		@*<p>Entry Date : <input type="date" @bind="@date" /></p>*@
 		<hr />
 		<p>User Name: <input type="text" @bind="userid" style="border-radius:20px;text-align:center;"></input></p>
-		<p><textarea @oninput="UpdateScoreAsync" class="col-10" placeholder="Describe the sentiment you have for today" style="border-radius:5px;"></textarea></p>
+		<br />
+		<p><textarea @oninput="UpdateScoreAsync" class="col-10" placeholder="Describe the sentiment you have for today (example: 'A beautiful cat greeted me today.')" style="border-radius:5px;"></textarea></p>
 @*		<hr />
 		<div class="sentiment cold-10" >
 			<p >😡<span style="margin-left:12%">🙁</span><span style="margin-left:19.8%">😐</span><span style="margin-left:20%">😃</span><span style="margin-left:11.3%">😍</span></p>
@@ -25,9 +26,9 @@
 		<center><p>Sentimet:<h3> @Value% </h3></p></center>
 	
 		<span>Correction: </span>
-		<button class="btn btn-primary" style="background-color:white" @onclick="addvalue"><span class="oi oi-plus" style="color:blue"></span></button>
+		<button class="btn btn-primary" style="background-color:white" @onclick="addvalue"><span class="oi oi-plus" style="color: rgb(5, 39, 103);"></span></button>
 		<button class="btn btn-primary" style="background-color:white" @onclick="minusvalue"><span class="oi oi-minus" style="color:red"></span></button>
-		<button class="btn btn-primary" @onclick="AddNewEntry" style="display:@display!important">Save</button><br />
+		<button class="btn btn-primary" @onclick="AddNewEntry" style="display:@display!important;color: rgb(5, 39, 103);"><span style="color:white">Save</span></button><br />
 		<br />
 		@*<h3 style="display:@displayNone!important;">Thank you</h3>*@
 		<a style="display:@displayNone!important;" class="twitter-share-button"
@@ -84,18 +85,18 @@
 				{
   <strong><p>Sentiment average for today = @avgSentiment %</p></strong>
 		}
-		<table class="table table-striped">
+		<table class="table table-striped" style="table-layout: fixed;word-wrap: break-word;">
 			<thead>
+@*				<tr></tr>
 				<tr></tr>
-				<tr></tr>
-				<tr></tr>
+				<tr></tr>*@
 			</thead>
 			<tbody>
 				@foreach (var item in getSentimentForDate)
 				{
 	<tr>
 
-	 <td style = "width:60%;">
+	 <td style = "width:60%!important;">
 						@item.Sentiment
 	 </td>
 	 <td>

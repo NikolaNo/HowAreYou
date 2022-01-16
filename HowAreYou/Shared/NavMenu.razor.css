@@ -3,12 +3,13 @@
 }
 
 .top-row {
-    height: 3.5rem;
+    /*height: 3.5rem;*/
     background-color: rgba(0,0,0,0.4);
 }
 
 .navbar-brand {
-    font-size: 1.1rem;
+    /*font-size: 1.1rem;*/
+    margin-left:1rem;
 }
 
 .oi {
@@ -19,9 +20,11 @@
 }
 
 .nav-item {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding-bottom: 0.5rem;
 }
+
+
 
     .nav-item:first-of-type {
         padding-top: 1rem;
@@ -50,7 +53,7 @@
     color: white;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 1341px) {
     .navbar-toggler {
         display: none;
     }

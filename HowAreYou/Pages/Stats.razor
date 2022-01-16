@@ -10,7 +10,8 @@
 
 		<p>
 			Select Entries From: <input type="date" @bind="dateselectedfrom" /> To: <input type="date" @bind="dateselectedto" />
-			<button class="btn btn-primary" @onclick="SelectEntries">Select</button>
+			<button class="btn btn-primary" @onclick="SelectEntries" style="color: rgb(5, 39, 103);"><span style="color:white">Select</span></button>
+			@*<button class="btn btn-danger" @onclick="DeleteAll">DeleteAll</button>*@
 		</p>
 
 		<hr />
@@ -18,11 +19,11 @@
 				{
   <strong><p>Sentiment average for selected period = @avgSentiment %</p></strong>
 		}
-		<table class="table table-striped">
+		<table class="table table-striped" style="table-layout: fixed;word-wrap: break-word;">
 			<thead>
+	@*			<tr></tr>
 				<tr></tr>
-				<tr></tr>
-				<tr></tr>
+				<tr></tr>*@
 			</thead>
 			<tbody>
 				@foreach (var item in getSentimentForDate)
@@ -219,7 +220,7 @@
 	//public async void AddNewTestEntry()
 	//{
 	//	//displaySentiment.Clear();
-	
+
 	//	SentimentAI item = new SentimentAI
 	//	{
 
@@ -322,6 +323,21 @@
 		StateHasChanged();
 
 	}
+
+	//public void DeleteAll()
+	//{
+	//	List<SentimentAI> list = db.SentimentAIs.Where(x => x.UserID == userid)
+	//		.Where(x => x.Date >= dateselectedfrom && x.Date <= dateselectedto)
+	//		.OrderBy(x => x.Date)		
+	//		.ToList();
+	//	foreach (var item in list)
+	//	{
+	//		db.SentimentAIs.Remove(item);
+	//		db.SaveChanges();
+	//	}
+	//	StateHasChanged();
+
+	//}
 }
 
 

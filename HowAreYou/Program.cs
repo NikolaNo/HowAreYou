@@ -1,12 +1,8 @@
-
 using BlazorSentimentAnalysis.Server.ML.DataModels;
 using HowAreYou.Areas.Identity;
 using HowAreYou.Data;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.ML;
 using Microsoft.Extensions.Caching.Memory;
@@ -33,7 +29,7 @@ builder.Services.AddPredictionEnginePool<SampleObservation, SamplePrediction>()
 .FromFile(builder.Configuration["MLModel:MLModelFilePath"]);
 builder.Services.AddSingleton<SentimentController>();
 builder.Services.AddMemoryCache();
-
+//builder.Services.AddMudServices();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

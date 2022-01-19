@@ -1,13 +1,176 @@
-﻿@*@page "/socialmood"
+﻿@page "/socialmood"
 
-<h2>Social Mood Indicators</h2>
-<br />
-<a href="https://socionomics.net/what-is-socionomics/" target="_blank">What is Socionomics?</a>
-<p>Imagine a modern, ground-breaking theory, which could link all human social behavior — cultural, economic, political, and more — into a single, elegant and unifying framework.</p>
-<center><h3>Bitcoin</h3></center>
+<center><h3><span class="oi oi-aperture" aria-hidden="true"></span> Sociometer</h3></center>
 <hr />
-<p>Due to its positive correlation with Dow Jones, Bitcoin is considered one of the primary social mood indicators.</p>
-<div style="width:30%">
-<img src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" /></div>
+@if (avg != 0)
+{
+    <center></center>
+    <center><h4><span class="oi oi-globe" aria-hidden="true"></span> Currently, around <span style="color:blue"> @avg% </span>of the world is in a good mood </h4></center>
+    <center><hr style="width:80%" /></center>
+}
+<br />
+<center><p><h2>Poles Of Social Mood</h2></p>
+<p><h5>Positive mood / Negative mood</h5></p>    
+<p>adventorousness / protectionism</p>
+<p>benevolence / malevolence</p>
+<p>clarity / fuzziness</p>
+<p>concord / discord</p>
+<p>confidence / fear</p>
+<p>constructiveness / destructiveness</p>
+<p>convergence / polarization</p>
+<p>daring / defensiveness</p>
+<p>desiring power over nature / desiring power over people</p>
+<p>ebullience / depresion</p>
+<p>embrace of effort / avoidance of effort</p>
+<p>forbearance / anger</p>
+<p>friskiness / somberness</p>
+<p>happiness / unhappiness</p>
+<p>homogeneity / heterogeneity</p>
+<p>hope / despair</p>
+<p>inclusion / exclusion</p>
+<p>interest in love / interest in sex</p>
+<p>liberality / restriction</p>
+<p>optimism / pessimism</p>
+<p>practical thinking / magical thinking</p>
+<p>search for joy / search for pleasure</p>
+<p>self providence / self deprivation</p>
+<p>sharpness of focus / dullness of focus</p>
+<p>supportiveness / opposition</p>
+<p>tendency to praise / tendency to critisize</p>
+<p>togetherness / separatism</p>
+<p><i>By Elliott Prechter</i></p>
+</center>
 
-https://g.co/finance/.DJI:INDEXDJX*@
+<div class="metadata" style='margin: 0px 0px 20px; padding: 0px 20px; background: url("images/back_postmeta.png") left top repeat-x rgb(255, 255, 255); border-radius: 7px; color: rgb(102, 102, 102);  font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'>
+    <div class="metainfo" style="margin: 0px; padding: 15px 0px 0px; overflow: hidden;">
+        <h1 style="margin: 0px 0px 6px; padding: 0px; font-size: 24px; font-weight: normal; color: rgb(34, 34, 34); line-height: 28px; font-family: Georgia, serif;"><span class="oi oi-list" style="color: rgb(203, 14, 61);" aria-hidden="true"></span> <a @onclick="Show" rel="bookmark" style="cursor: pointer;margin: 0px; padding: 0px; text-decoration: none; outline: none; color: rgb(203, 14, 61);" title="Permanent Link to What is Socionomics: Learn the Basics of the Theory and Its Application">What is Socionomics: Learn the Basics of the Theory and Its Application</a></h1>
+        <div class="meta" style="margin: 0px; padding: 0px;"><br></div>
+    </div>
+</div>
+<div class="entry" style=" display:@show!important; margin: 0px 20px; padding: 0px; clear: left; line-height: 1.5; overflow: hidden; float: none; display: block; width: auto; color: rgb(102, 102, 102);  font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+    <p style="margin: 0px 0px 14px; padding: 0px;">By Elliott Prechter</p>
+    <p style="margin: 0px 0px 14px; padding: 0px;"><strong style="margin: 0px; padding: 0px; font-style: normal; font-weight: bold;"><span class="subtitle" style="margin: 0px; padding: 0px;">Imagine a modern, ground-breaking theory, which could link all human social behavior &mdash; cultural, economic, political, and more &mdash; into a single, elegant and unifying framework</span></strong></p>
+    <p style="margin: 0px 0px 14px; padding: 0px;">Have you ever noticed how economists, politicians, and business leaders consistently fail to foresee major turning points in history? With all of today&rsquo;s science and technology, why are we still unable to anticipate wars, economic depressions, financial bubbles and even fashion trends?</p>
+    <p style="margin: 0px 0px 14px; padding: 0px;">Conventional models for forecasting economic and social trends simply do not work because they rely on a fatally flawed assumption about how people behave. Unfortunately, &ldquo;fatal assumptions&rdquo; are common throughout scientific history, and they often languish for far too long. New ideas can blossom only after wrong assumptions are discarded. When evidence refutes long-held assumptions, truth has a chance. A new theory emerges, and the old theory&rsquo;s plethora of special cases and exceptions fade away. A proper perspective enhances our ability to predict and prepare for the future.</p>
+    <p style="margin: 0px 0px 14px; padding: 0px;">The fatal flaw that economics and broader social science fields rely upon is&nbsp;<i style="margin: 0px; padding: 0px;">external causality</i>, or the notion that major events are the primary influence and shaper of history. This model is just as attractive &ndash;and just as mistaken &mdash; as the notion of the four elements, the four humors or a geocentric universe. Yet even in the face of contrary evidence, people find it hard to divest themselves of deeply ingrained notions.</p>
+    <p style="margin: 0px 0px 14px; padding: 0px;">Now imagine a modern, ground-breaking theory, which could link all human social behavior &mdash; cultural, economic, political, and more &mdash; into a single, elegant and unifying framework. Well, such a framework is here, and it&rsquo;s called socionomics.</p>
+    <p style="margin: 0px 0px 14px; padding: 0px;">Socionomics succeeds by turning the assumption of external causality on its head, and it instead recognizes internal causality. People in groups share an unconscious collective disposition that is endogenously regulated. This shared social mood steers the actions that groups take and therefore the events that unfold across time to create history. In other words, psychology precedes actions, not vice-versa. Furthermore, social mood&rsquo;s fluctuations are patterned, which makes it possible to forecast the type and character of social and economic events.&nbsp;Socionomic causality is the engine of history.</p>
+    <p style="margin: 0px 0px 14px; padding: 0px;">The power of socionomics is radical and unprecedented. Conventional social theory would have had you trapped in Germany when the Nazis took over; socionomics tells you when the political environment is likely to turn dangerously unstable. Conventional economics would have you lose everything in a major financial crash; socionomics tells you when and where to expect them. As research marches on, the evidence continues to mount in favor of the socionomic insight.</p>
+    <p>For more information visit <a href="https://socionomics.net/learn-about-socionomics/" target="_blank">Socionomics Institute</a></p>
+</div>
+
+<div class="metadata" style='margin: 0px 0px 20px; padding: 0px 10px; background: url("images/back_postmeta.png") left top repeat-x rgb(255, 255, 255); border-radius: 7px; color: rgb(102, 102, 102); font-family: Arial, Helvetica, Tahoma, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'>
+    <div class="metainfo" style="margin: 0px; padding: 15px 0px 0px; overflow: hidden;">
+        <h1 style="margin: 0px 0px 6px; padding: 0px; font-size: 24px; font-weight: normal; color: rgb(34, 34, 34); line-height: 28px; font-family: Georgia, serif;"><span class="oi oi-list" style="color: rgb(203, 14, 61);" aria-hidden="true"></span> <a @onclick="Show2" rel="bookmark" style="cursor: pointer;margin: 0px; padding: 0px; text-decoration: none; outline: none; color: rgb(203, 14, 61);" title="Permanent Link to What is Socionomics: Learn the Basics of the Theory and Its Application">A brief explanation of how the World Mood is calculated</a></h1>
+        <div class="meta" style="margin: 0px; padding: 0px;"><br></div>
+    </div>
+</div>
+<div class="entry" style=" display:@show2!important; margin: 0px 10px; padding: 0px; clear: left;  line-height: 1.5; overflow: hidden; float: none; display: block; width: auto; color: rgb(102, 102, 102); font-family: Arial, Helvetica, Tahoma, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+   
+    <p style="">This is a theory that quantifies current social mood using socionomic data. I call it the Desintegration Loop Theory.</p>
+    <p style="">In essence, it takes the human tendency to judge things in a positive light 68.2% of the time. </p>
+    <p style="">For the second part of the equation, I use stock market data from the past three months.</p>
+    <p style="">Using the data, we can make a general assessment of the trends that are current in the world.</p>
+    <p style="">It is called Desintegration Loop Theory because it accounts for changes in emotional states as endogenously regulated, not prompted by outside forces.</p>
+    <p style="">This theory is still a work in progress. For more information about Socionomics visit <a href="https://socionomics.net/learn-about-socionomics/" target="_blank">Socionomics Institute</a> </p>
+
+</div>
+<hr />
+@code {
+    public decimal sum = 0;
+    public decimal avg = 0;
+
+    public string show = "none";
+    public string show2 = "none";
+    public int count = 0;
+    protected override async Task OnInitializedAsync()
+    {
+        string url = "https://www.marketwatch.com/investing/index/spx";
+        var response = CallUrl(url).Result;
+        HtmlDocument htmlDoc = new HtmlDocument();
+        htmlDoc.LoadHtml(response);
+        var PriceNode = htmlDoc.DocumentNode.SelectNodes("//li[@class='content__item value ignore-color']");
+        var value = PriceNode.Select(x => x.InnerText).ToList();
+        foreach (var item in value)
+        {
+            count++;
+            if (count == 3)
+            { 
+                var a = item.Remove(item.Length - 1, 1);
+
+                sum += Convert.ToDecimal(a);
+            }
+            if (count > 3) break;
+
+
+        }
+        avg = Math.Round((decimal)68.2 + sum);
+
+        if (avg > 90)
+        {
+            avg = 90;
+        }
+        if (avg < 10)
+        {
+            avg = 10;
+        }
+
+
+    }
+
+    public void Show()
+    {
+        if (show == "initial")
+        {
+            show = "none";
+        }
+        else
+        {
+            show = "initial";
+        }
+        StateHasChanged();
+    }
+    public void Show2()
+    {
+
+        if (show2 == "initial")
+        {
+            show2 = "none";
+        }
+        else
+        {
+            show2 = "initial";
+        }
+        StateHasChanged();
+    }
+
+    private static Task<string> CallUrl(string fullUrl)
+    {
+        HttpClient client = new HttpClient();
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls13;
+        client.DefaultRequestHeaders.Accept.Clear();
+        var response = client.GetStringAsync(fullUrl);
+        return response;
+    }
+
+    private List<string> ParseHtml(string html)
+    {
+        HtmlDocument htmlDoc = new HtmlDocument();
+        htmlDoc.LoadHtml(html);
+        var PriceNode = htmlDoc.DocumentNode.SelectNodes("//div[@class='YMlKec fxKbKc']");
+        var programmerLinks = htmlDoc.DocumentNode.Descendants("li")
+                .Where(node => !node.GetAttributeValue("class", "").Contains("tocsection")).ToList();
+
+        List<string> wikiLink = new List<string>();
+
+        foreach (var link in programmerLinks)
+        {
+            if (link.FirstChild.Attributes.Count > 0)
+                wikiLink.Add("https://en.wikipedia.org/" + link.FirstChild.Attributes[0].Value);
+        }
+
+        return wikiLink;
+
+    }
+}
+

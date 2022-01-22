@@ -7,6 +7,7 @@ namespace HowAreYou.Data
     public class ApplicationDbContext : DbContext
     {
         public DbSet<SentimentAI> SentimentAIs { get; set; }
+        public DbSet<WorldSentimentData> WorldSentimentDatas { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

@@ -1,4 +1,4 @@
-﻿@page "/stats"
+﻿@page "/admin13"
 
 @inject ApplicationDbContext db
 @inject NavigationManager Navigation
@@ -12,6 +12,7 @@
 			<button class="btn btn-primary" @onclick="SelectEntries" style="color: rgb(5, 39, 103);"><span style="color:white">Select</span></button>
 			@*<button class="btn btn-danger" @onclick="DeleteAll">DeleteAll</button>*@
 		</p>
+		<p><input type="text" @bind="pass" /></p>
 
 		<hr />
 		@if (@avgSentiment != "")
@@ -38,6 +39,7 @@
 	 	 <td>
 						@item.UserID
 	 </td>
+	 <td> <button class="btn" @onclick="@(()=> Remove(item.Id))"><i class="fa fa-close" style="color:red;zoom:1;"></i></button></td>
 	</tr>
 				}
 			</tbody>
@@ -45,6 +47,8 @@
 		</center>
 
 @code {
+
+	string pass = "";
 	DateTime date = DateTime.Now;
 	static string shortdate = DateTime.Now.ToShortDateString();
 
@@ -74,6 +78,18 @@
 		avgSentiment = Convert.ToString(sum / count);
 
 		StateHasChanged();
+
+	}
+
+	public void Remove(Guid id)
+	{
+		if (pass == "shrike111") { 
+		var item = db.SentimentAIs.Where(x => x.Id == id).SingleOrDefault();
+
+		db.SentimentAIs.Remove(item);
+		db.SaveChanges();
+		StateHasChanged();
+		}
 
 	}
 

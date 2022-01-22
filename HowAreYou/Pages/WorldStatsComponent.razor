@@ -1,0 +1,77 @@
+﻿@page "/worldstats"
+
+@inject ApplicationDbContext db
+@inject NavigationManager Navigation
+
+<PageTitle>Index</PageTitle>
+
+<center>
+    <h1><span class="oi oi-magnifying-glass" aria-hidden="true"></span> Choose a date range</h1>
+
+    <p>
+        Select Entries From: <input type="date" @bind="dateselectedfrom" /> To: <input type="date" @bind="dateselectedto" />
+        <button class="btn btn-primary" @onclick="SelectEntries" style="color: rgb(5, 39, 103);"><span style="color:white">Select</span></button>
+        @*<button class="btn btn-danger" @onclick="DeleteAll">DeleteAll</button>*@
+    </p>
+
+    <hr />
+    @if (@avgSentiment != "")
+    {
+        <strong><p>Sentiment average for selected period = @avgSentiment %</p></strong>
+    }
+    <table class="table table-striped" style="table-layout: fixed;word-wrap: break-word;">
+        <thead>
+            @*			<tr></tr>
+                <tr></tr>
+                <tr></tr>*@
+        </thead>
+        <tbody>
+            @foreach (var item in getSentimentForDate)
+            {
+                <tr>
+                    <td>
+                        @item.Date
+                    </td>
+                    <td>
+                        @item.SentimentScore %
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</center>
+
+@code {
+    DateTime date = DateTime.Now;
+    static string shortdate = DateTime.Now.ToShortDateString();
+
+    List<WorldSentimentData> getSentimentForDate = new List<WorldSentimentData>();
+    DateTime dateselectedfrom = DateTime.Parse(shortdate);
+    DateTime dateselectedto = DateTime.Now;
+
+    public string avgSentiment = "";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+
+    public void SelectEntries()
+    {
+
+        getSentimentForDate = db.WorldSentimentDatas.Where(x => x.Date >= dateselectedfrom && x.Date <= dateselectedto)
+            .OrderBy(x => x.Date)
+            .ToList();
+
+        var sum = getSentimentForDate.Where(x => x.SentimentScore > 0).Select(x => x.SentimentScore).Sum();
+        var count = getSentimentForDate.Where(x => x.SentimentScore > 0).Select(x => x.SentimentScore).Count();
+        avgSentiment = Convert.ToString(sum / count);
+
+        StateHasChanged();
+
+    }
+
+}

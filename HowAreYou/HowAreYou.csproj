@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <None Update="Data\HowDB.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="ML\MLSentimentModel.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

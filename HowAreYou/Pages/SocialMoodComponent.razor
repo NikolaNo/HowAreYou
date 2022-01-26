@@ -2,6 +2,8 @@
 
 @page "/socialmood"
 
+<PageTitle>World Mood</PageTitle>
+
 <center><h1><span class="oi oi-aperture" aria-hidden="true"></span> Sociometer</h1></center>
 <hr />
 @if (avg != 0)
@@ -68,14 +70,14 @@
     </div>
 </div>
 <div class="entry" style=" display:@show2!important; margin: 0px 10px; padding: 0px; clear: left;  line-height: 1.5; overflow: hidden; float: none; display: block; width: auto; color: rgb(102, 102, 102); font-family: Arial, Helvetica, Tahoma, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
-   <p style="">According to socionomic theory, the most useful and pure data about people's moods is found in stock charts.</p>
+   <p style="">According to Socionomic Theory, the most useful and pure data about people's moods is found in Stock Charts.</p>
     <p style="">In this equation, we quantify social mood based on economic data.</p>
     <p style="">In essence, it takes the human tendency to judge things in a positive light 68.2% of the time. </p>
-    <p style="">In the second part of the equation, I use stock market data from the past three months.</p>
+    <p style="">In the second part of the equation, we use stock market data from the past three months.</p>
     <p style="">Using the data, we can make a general assessment of the trends that are current in the world.</p>
-    <p style="">I refer to this as the Desintegration Loop Theory since it recognizes an endogenous regulation of emotional states, independent of external factors.</p>
-    <p style="">This equation is still a work in progress.</p> 
-    <p>For more information about Socionomics visit <a href="https://socionomics.net/learn-about-socionomics/" target="_blank">Socionomics Institute</a> </p>
+    <p style="">I refer to this as the Integration Loop Theory since it recognizes an endogenous regulation of emotional states, independent of external factors.</p>
+    <p style="">It is still in development, but the idea is to track mood changes quarterly and predict social trends.</p> 
+    <p>Here are some useful videos to learn about socionomics: <a href="https://tinyurl.com/yag8expt" target="_blank">Socionomics links</a></p>    
 
 </div>
 
@@ -183,24 +185,24 @@
         return response;
     }
 
-    private List<string> ParseHtml(string html)
-    {
-        HtmlDocument htmlDoc = new HtmlDocument();
-        htmlDoc.LoadHtml(html);
-        var PriceNode = htmlDoc.DocumentNode.SelectNodes("//div[@class='YMlKec fxKbKc']");
-        var programmerLinks = htmlDoc.DocumentNode.Descendants("li")
-                .Where(node => !node.GetAttributeValue("class", "").Contains("tocsection")).ToList();
+    //private List<string> ParseHtml(string html)
+    //{
+    //    HtmlDocument htmlDoc = new HtmlDocument();
+    //    htmlDoc.LoadHtml(html);
+    //    var PriceNode = htmlDoc.DocumentNode.SelectNodes("//div[@class='YMlKec fxKbKc']");
+    //    var programmerLinks = htmlDoc.DocumentNode.Descendants("li")
+    //            .Where(node => !node.GetAttributeValue("class", "").Contains("tocsection")).ToList();
 
-        List<string> wikiLink = new List<string>();
+    //    List<string> wikiLink = new List<string>();
 
-        foreach (var link in programmerLinks)
-        {
-            if (link.FirstChild.Attributes.Count > 0)
-                wikiLink.Add("https://en.wikipedia.org/" + link.FirstChild.Attributes[0].Value);
-        }
+    //    //foreach (var link in programmerLinks)
+    //    //{
+    //    //    if (link.FirstChild.Attributes.Count > 0)
+    //    //        wikiLink.Add("https://en.wikipedia.org/" + link.FirstChild.Attributes[0].Value);
+    //    //}
 
-        return wikiLink;
+    //    return wikiLink;
 
-    }
+    //}
 }
 

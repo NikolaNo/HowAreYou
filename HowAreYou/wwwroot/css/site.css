@@ -1,8 +1,28 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
+
     font-family:   'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, Tahoma, Geneva, Verdana, sans-serif, Helvetica, Arial, sans-serif;
 }
+body {
+    background-color: #e5e5f700;
+    /*opacity: 0.1;*/
+    background-image: repeating-radial-gradient(circle at 0px 0px, #0000000d 0px, rgb(229 229 247 / 53%) 13px), repeating-linear-gradient(rgb(247 69 69 / 12%), rgb(247 69 69 / 0%));
+}
+
+/*@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}*/
 
 h1:focus {
     outline: none;

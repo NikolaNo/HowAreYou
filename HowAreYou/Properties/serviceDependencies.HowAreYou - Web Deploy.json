@@ -2,7 +2,7 @@
   "dependencies": {
     "signalr1": {
       "secretStore": "AzureAppSettings",
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.SignalRService/SignalR/BlazorLinksservice",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.SignalRService/SignalR/howareyou",
       "type": "signalr.azure",
       "connectionId": "Azure:SignalR:ConnectionString"
     }

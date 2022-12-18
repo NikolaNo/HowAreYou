@@ -7,7 +7,7 @@ html, body {
 body {
     background-color: #e5e5f700;
     /*opacity: 0.1;*/
-    background-image: repeating-radial-gradient(circle at 0px 0px, #0000000d 0px, rgb(229 229 247 / 53%) 13px), repeating-linear-gradient(rgb(247 69 69 / 12%), rgb(247 69 69 / 0%));
+    background-image: repeating-radial-gradient(circle at 0px 0px, #0000000d 0px, rgb(229 229 247 / 33%) 13px), repeating-linear-gradient(rgb(247 69 69 / 1%), rgb(247 69 69 / 0%));
 }
 
 /*@keyframes gradient {

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+	  <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-HowAreYou-C55877CF-AD55-42E2-8903-7FD8F378EEE1</UserSecretsId>
     <PlatformTarget>AnyCPU</PlatformTarget>
